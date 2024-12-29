@@ -86,6 +86,25 @@ from datetime import datetime
 import spacy
 import os
 import tempfile
+import sys
+import subprocess
+
+def install_spacy_model():
+    try:
+        # Try importing spacy first
+        import spacy
+        try:
+            # Try loading the model
+            nlp = spacy.load('en_core_web_sm')
+        except OSError:
+            # If model isn't found, install it using pip directly
+            subprocess.check_call([sys.executable, "-m", "pip", "install", 
+                "https://github.com/explosion/spacy-models/releases/download/en_core_web_sm-3.7.0/en_core_web_sm-3.7.0-py3-none-any.whl"])
+    except Exception as e:
+        print(f"An error occurred: {e}")
+        
+# Run the installation
+install_spacy_model()
 
 st.set_page_config(
     page_title="Invoice Fraud Detector",
