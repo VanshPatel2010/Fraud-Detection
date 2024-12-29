@@ -84,3 +84,4 @@ pandas
 yfinance
 scikit-learn
 PyPDF2
+spacy
